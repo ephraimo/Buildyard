@@ -28,6 +28,8 @@ add_custom_target(buildall)
 add_dependencies(updates update)
 set_target_properties(AllProjects PROPERTIES FOLDER "00_Main")
 
+set(EXTERNAL_PACKAGES_SOURCE_DIR "SOURCE_DIR" CACHE STRING "Where to checkout external packages, use SOURCE_DIR, BINARY_DIR, or explicit path")
+
 add_custom_target(Buildyard-stat
   COMMAND ${GIT_EXECUTABLE} status -s --untracked-files=no
   COMMENT "Buildyard Status:"
@@ -130,7 +132,13 @@ function(USE_EXTERNAL name)
   set(SHORT_ROOT ${SHORT_NAME}_ROOT)
   set(SHORT_ENVROOT $ENV{${SHORT_ROOT}})
   if(NOT ${NAME}_SOURCE)
-    set(${NAME}_SOURCE "${CMAKE_SOURCE_DIR}/src/${name}")
+    if(EXTERNAL_PACKAGES_SOURCE_DIR STREQUAL "BINARY_DIR")
+      set(${NAME}_SOURCE "${CMAKE_BINARY_DIR}/src/${name}")
+    elseif(EXTERNAL_PACKAGES_SOURCE_DIR STREQUAL "SOURCE_DIR")
+      set(${NAME}_SOURCE "${CMAKE_SOURCE_DIR}/src/${name}")
+    else()
+       set(${NAME}_SOURCE "${EXTERNAL_PACKAGES_SOURCE_DIR}/${name}")
+    endif()
   endif()
 
   # CMake module search path

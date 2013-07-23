@@ -1,4 +1,7 @@
 #!gmake
+
+CMakeListsLocation := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 .PHONY: debug release build clean clobber package tests
 
 ifeq ($(wildcard Makefile), Makefile)
@@ -53,7 +56,7 @@ Release/Makefile:
 
 %/Makefile:
 	@mkdir -p $*
-	@cd $*; cmake ..
+	@cd $*; cmake $(CMakeArgs) $(CMakeListsLocation)
 
 ifneq ($(wildcard Makefile), Makefile)
 
