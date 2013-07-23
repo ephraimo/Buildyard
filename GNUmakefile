@@ -63,5 +63,5 @@ ${BUILD}/projects.make: $(BUILD)/Makefile
 
 .DEFAULT:
 	@$(MAKE) --no-print-directory $(BUILD)/Makefile
-	@$(MAKE) --no-print-directory -C $(BUILD) $(MAKECMDGOALS)
+	@$(MAKE) --no-print-directory -C $(BUILD) $@
 endif
