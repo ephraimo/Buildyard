@@ -7,7 +7,7 @@ set(FFMPEG_FORCE_BUILD ON)
 set(FFMPEG_SOURCE "${CMAKE_BINARY_DIR}/src/FFmpeg")
 
 #set(FFMPEG_ENABLE_OPTIONS shared gpl version3 avisynth bzlib fontconfig frei0r gnutls iconv libass libbluray libcaca libfreetype libgsm libilbc libmodplug libmp3lame libopencore-amrnb libopencore-amrwb libopenjpeg libopus librtmp libschroedinger libsoxr libspeex libtheora libtwolame libvo-aacenc libvo-amrwbenc libvorbis libvpx libx264 libxavs libxvid zlib)
-set(FFMPEG_ENABLE_OPTIONS static gpl version3 avisynth bzlib fontconfig iconv libfreetype zlib)
+set(FFMPEG_ENABLE_OPTIONS static gpl version3 avisynth bzlib iconv zlib)
 set(FFMPEG_DISABLE_OPTIONS shared w32threads)
 
 foreach(OPTION ${FFMPEG_ENABLE_OPTIONS})
