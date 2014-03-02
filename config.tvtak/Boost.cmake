@@ -7,7 +7,7 @@ set(BOOST_SOURCE "${CMAKE_BINARY_DIR}/src/Boost")
 set(BOOST_OPTIONAL ON)
 set(BOOST_CMAKE_INCLUDE "SYSTEM")
 
-set(BOOST_BUILD_LIBRARIES thread date_time system filesystem serialization chrono program_options regex)
+set(BOOST_BUILD_LIBRARIES thread date_time system filesystem serialization chrono program_options regex iostreams)
 find_package(PythonLibs QUIET)
 if(PYTHONLIBS_FOUND)
   list(APPEND BOOST_BUILD_LIBRARIES python)
