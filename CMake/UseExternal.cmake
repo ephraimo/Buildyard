@@ -284,6 +284,10 @@ function(USE_EXTERNAL name)
     set(REPO_TAG SVN_REVISION)
   elseif(REPO_TYPE STREQUAL "FILE")
     set(DOWNLOAD_CMD URL)
+    set(URL_MD5 ${${NAME}_URL_MD5})
+    if(URL_MD5)
+      set(URL_MD5 URL_MD5)
+    endif()
   else()
     message(FATAL_ERROR "Unknown repository type ${REPO_TYPE}")
   endif()
@@ -313,6 +317,7 @@ function(USE_EXTERNAL name)
     DEPENDS "${DEPENDS}"
     ${DOWNLOAD_CMD} ${${NAME}_REPO_URL}
     ${REPO_TAG} ${${NAME}_REPO_TAG}
+    ${URL_MD5} ${${NAME}_URL_MD5}
     UPDATE_COMMAND ${UPDATE_CMD}
     CMAKE_ARGS ${ARGS}
     TEST_AFTER_INSTALL 1
